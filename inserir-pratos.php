@@ -145,8 +145,8 @@
     <?php
 
         $server = 'localhost';
-        $user = 'root';
-        $password = 'root';
+        $user = 'tiago';
+        $password = '123';
         $db_name = 'restaurante';
         $port = '8889';
 
@@ -155,10 +155,38 @@
 
         if ($db_connect->connect_error) {
             echo 'Falha: ' . $db_connect->connect_error;
-        } else {
+        } 
+        else {
             echo 'Conexão feita com sucesso' . '<br><br>';
 
+            
+            foreach ($pratos as $prato) {
+                $codigo = $prato['codigo'];
+                $nome = $prato['nome'];
+                $categoria = $prato['categoria'];
+                $descr = $prato['descr'];
+                $preco = $prato['preco'];
+                $calorias = $prato['calorias'];
+                $destaque = $prato['destaque'];
 
+                
+
+                $sql = "INSERT INTO pratos
+                (codigo, nome, categoria, descricao, preco, calorias, destaque)
+                    VALUES 
+                ('$codigo', '$nome', '$categoria', '$descr', '$preco', '$calorias', '$destaque');";
+
+
+                if ($db_connect->query($sql)) {
+                    echo $nome . " inserido com sucesso" . "<br><br>";
+                }
+                else{
+                    echo "Não foi possível inserir " . $nome . "<br><br>";
+                    echo mysqli_error($db_connect)  . "<br><br>";
+                }
+
+                echo "<br>";
+            }
             
         }
     ?>   
