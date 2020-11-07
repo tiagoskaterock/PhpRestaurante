@@ -1,8 +1,4 @@
-<?php include('header.php'); ?>
-     
-
-
-
+<?php include('header.php'); ?>    
            
         <div class="cardapio-list small-11 large-12 columns no-padding small-centered">
             
@@ -11,6 +7,42 @@
                     <h3>Cardapio</h3>
                     <hr></hr>
                 </div>
+
+                    <?php
+                        $server = 'localhost';
+                        $user = 'tiago';
+                        $password = '123';
+                        $db_name = 'restaurante';
+                        $port = '8889';
+
+                        $db_connect = new mysqli($server,$user,$password,$db_name,$port);
+                        mysqli_set_charset($db_connect,"utf8");
+
+                        
+                        if ($db_connect->connect_error) {
+                            echo 'Falha: ' . $db_connect->connect_error;
+                        } 
+                        else {
+                            $sql = "SELECT DISTINCT categoria FROM pratos";
+
+                            $result = $db_connect->query($sql);
+
+                            
+                            if ($result->num_rows > 0) {
+
+                                while ($row = $result->fetch_assoc()) {
+
+                                    $categoria = $row['categoria'];
+                                    echo $categoria;
+                                    echo "<br>";
+
+                                } 
+                            }                           
+                            else{
+                                echo "Não há pratos";
+                            }                            
+                        }
+                    ?>  
 
                 <div class="category-slider small-12 columns no-padding">
                     <h4>Entradas</h4>
@@ -199,8 +231,7 @@
 
                            
                         </div>
-                    </div>
-                   
+                    </div>                   
                 </div>
 
                 <div class="category-slider small-12 columns no-padding">
@@ -295,12 +326,8 @@
 
                            
                         </div>
-                    </div>
-                   
+                    </div>                   
                 </div>
-
-
-
 
             </div>
         </div>
