@@ -32,10 +32,59 @@
 
                                 while ($row = $result->fetch_assoc()) {
 
-                                    $categoria = $row['categoria'];
-                                    echo $categoria;
-                                    echo "<br>";
+                                    $categoria = $row['categoria']; 
+                                    ?>
 
+                                    <div class="category-slider small-12 columns no-padding">
+                                        <h4><?php echo $categoria ?></h4>
+
+                                        <div class="slider-cardapio">
+                                            <div class="slider-002 small-12 small-centered columns">
+
+                                                <?php 
+
+                                                    $sql2 = "SELECT * FROM pratos WHERE categoria = '$categoria'";
+
+                                                    $result2 = $db_connect->query($sql2);
+
+                                                    if ($result2->num_rows > 0) {
+
+                                                        while ($row2 = $result2->fetch_assoc()){ 
+                                                            ?>
+                                                            
+                                                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
+                                                                <div class="cardapio-item">
+                                                                    <a href="prato.php?prato=<?php echo $row2['codigo']; ?>">
+                                                                        
+                                                                        <div class="item-image">
+                                                                            <img src="img/cardapio/<?php echo $row2['codigo']; ?>.jpg" alt="cogumelos"/>   
+                                                                        </div>
+
+                                                                        <div class="item-info">
+                                                                            
+                                                                        
+                                                                            <div class="title"><?php echo $row2['nome']; ?></div>
+                                                                        </div>
+
+                                                                        <div class="gradient-filter">
+                                                                        </div>
+                                                                        
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php 
+                                                        }
+
+                                                    }
+
+                                                ?>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>                                    
+
+                                    <?php 
                                 } 
                             }                           
                             else{
@@ -44,6 +93,7 @@
                         }
                     ?>  
 
+                <!--
                 <div class="category-slider small-12 columns no-padding">
                     <h4>Entradas</h4>
 
@@ -138,197 +188,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="category-slider small-12 columns no-padding">
-                    <h4>Pratos Principais</h4>
-
-                    <div class="slider-cardapio">
-                        <div class="slider-002 small-12 small-centered columns">
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="picanha-brasileira.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/picanha-brasileira.jpg" alt="picanha"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Picanha à Brasileira</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="picanha-brasileira.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/costelinha.jpg" alt="costela"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Costelinha de Porco</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="picanha-brasileira.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/salmao-legumes.jpg" alt="salmao"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Salmão aos Legumes</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="picanha-brasileira.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/churrasco-misto.jpg" alt="churrasco"/>
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Churrasco Misto</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                           
-                        </div>
-                    </div>                   
-                </div>
-
-                <div class="category-slider small-12 columns no-padding">
-                    <h4>Sobremesas</h4>
-
-                    <div class="slider-cardapio">
-                        <div class="slider-002 small-12 small-centered columns">
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="cheesecake-cereja.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/cheesecake-cereja.jpg" alt="cheesecake"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Cheesecake de Cereja</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="cheesecake-cereja.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/flan-frutas-vermelhas.jpg" alt="flan"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Flan de Frutas Vermelhas</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="cheesecake-cereja.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/petit-gateau.jpg" alt="petit-gateau"/>   
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Petit Gateau</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="cardapio-item-outer bounce-hover small-10 medium-4 columns"> 
-                                <div class="cardapio-item">
-                                    <a href="cheesecake-cereja.html">
-                                        
-                                        <div class="item-image">
-                                            <img src="img/cardapio/creme-papaya.jpg" alt="papaya"/>
-                                        </div>
-
-                                        <div class="item-info">
-                                            
-                                        
-                                            <div class="title">Creme de Papaya com Cassis</div>
-                                        </div>
-
-                                        <div class="gradient-filter">
-                                        </div>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-
-                           
-                        </div>
-                    </div>                   
-                </div>
-
+                -->
             </div>
         </div>
 
