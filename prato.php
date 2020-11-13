@@ -36,9 +36,6 @@
 
                 }
               }
-              else{
-                echo "Não há destaques<br>";
-              }
           }
     ?>
 
